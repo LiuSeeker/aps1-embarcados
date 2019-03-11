@@ -1,5 +1,5 @@
 /**
- * 5 semestre - Eng. da Computação - Insper
+ * 5 semestre - Eng. da Computaï¿½ï¿½o - Insper
  * Rafael Corsi - rafael.corsi@insper.edu.br
  *
  * Projeto 0 para a placa SAME70-XPLD
@@ -11,6 +11,14 @@
  *
  * Material :
  *  - Kit: ATMEL SAME70-XPLD - ARM CORTEX M7
+ */
+
+/**
+ * Entrega realizada em parceria com: 
+ * 	Vitor Liu
+ * 	Vitor Satyro
+ * 
+ * 	URL VIDEO
  */
 
 /************************************************************************/
@@ -46,7 +54,7 @@
 #define NOTE_B3b 233   //Si
 #define NOTE_B3  246   //Si
 #define NOTE_C4  262   //Do
-#define NOTE_D4  294   //Ré
+#define NOTE_D4  294   //Rï¿½
 #define NOTE_E4  330   //Mi
 #define NOTE_F4  349   //Fa
 #define NOTE_F4s 369   //Fa sustenido
@@ -55,7 +63,7 @@
 #define NOTE_A4s 466   //La sustenido
 #define NOTE_B4  494   //Si
 #define NOTE_C5  523   //Do
-#define NOTE_D5  587   //Ré
+#define NOTE_D5  587   //Rï¿½
 #define NOTE_E5  659   //Mi
 #define NOTE_F5  698   //Fa
 #define NOTE_G5  784   //Sol
@@ -203,7 +211,7 @@ void init(void);
 /* funcoes                                                              */
 /************************************************************************/
 
-// Função de inicialização do uC
+// Funï¿½ï¿½o de inicializaï¿½ï¿½o do uC
 void init(void)
 {
 	sysclk_init();
@@ -250,7 +258,7 @@ int main(void)
   init();
 
   // super loop
-  // aplicacoes embarcadas não devem sair do while(1).
+  // aplicacoes embarcadas nï¿½o devem sair do while(1).
   
   
   while (1){	
@@ -272,9 +280,9 @@ int main(void)
 	}
 	 
 	
-	if(!pio_get(BUT_PIO, PIO_INPUT, BUT_PIO_IDX_MASK)){
-		if(n_mus == 0){
-			for (int i=0;i<203;i++){
+	if(n_mus == 0){
+		if(!pio_get(BUT_PIO, PIO_INPUT, BUT_PIO_IDX_MASK)){
+			for (int i=0;i< sizeof(notes1)/sizeof(notes1[0]) ;i++){
 				if(!pio_get(BUT2_PIO, PIO_INPUT, BUT2_PIO_IDX_MASK)){
 					break;
 				}
@@ -284,10 +292,12 @@ int main(void)
 				int pauseBetweenNotes = duration1[i];
 				delay_ms(pauseBetweenNotes);
 			}
-			n_mus = 0;
 		}
-		if(n_mus == 1){
-			for (int i=0;i<71;i++){
+		n_mus = 0;
+	}
+	if(n_mus == 1){
+		if(!pio_get(BUT_PIO, PIO_INPUT, BUT_PIO_IDX_MASK)){
+			for (int i=0;i<sizeof(notes2)/sizeof(notes2[0]);i++){
 				if(!pio_get(BUT2_PIO, PIO_INPUT, BUT2_PIO_IDX_MASK)){
 					break;
 				}
@@ -297,9 +307,8 @@ int main(void)
 				int pauseBetweenNotes = duration2[i]*0.8;
 				delay_ms(pauseBetweenNotes);
 			}
-			n_mus = 1;
 		}
-		
+		n_mus = 1;
 	}
 	pio_clear(PIOA, BUZ_PIO_IDX_MASK);
 	pio_set(PIOC, LED_PIO_IDX_MASK);      // Coloca 1 no pino LED
