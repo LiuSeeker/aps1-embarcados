@@ -18,7 +18,10 @@
  * 	Vitor Liu
  * 	Vitor Satyro
  * 
- * 	URL VIDEO
+ * 	https://youtu.be/ioLHXsXvSEk
+ * 
+ *  Música 1 - Tema "Piratas do Caribe", Klaus Badelt e Hans Zimmer
+ * 	Música 2 - Castelo Forte (Ein feste burg ist unser Gott), Martinho Lutero
  */
 
 /************************************************************************/
@@ -237,6 +240,9 @@ void tone(int nota, int duracao){
 	long delayValue = (100000/nota)/2;
 	int ciclos = (nota*duracao)/1000;
 	for (int i = 0; i < ciclos; i++){
+		if(!pio_get(BUT2_PIO, PIO_INPUT, BUT2_PIO_IDX_MASK)){
+			break;
+		}
 		pio_set(PIOA, BUZ_PIO_IDX_MASK);
 		delay_us(delayValue);
 		pio_clear(PIOA, BUZ_PIO_IDX_MASK);
