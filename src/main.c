@@ -21,6 +21,7 @@
  * 	https://youtu.be/ioLHXsXvSEk
  * 
  *  Música 1 - Tema "Piratas do Caribe", Klaus Badelt e Hans Zimmer
+ * 		Transcrito por Xitang - https://github.com/xitangg/-Pirates-of-the-Caribbean-Theme-Song/blob/master/Pirates_of_the_Caribbean_-_Theme_Song.ino
  * 	Música 2 - Castelo Forte (Ein feste burg ist unser Gott), Martinho Lutero
  */
 
